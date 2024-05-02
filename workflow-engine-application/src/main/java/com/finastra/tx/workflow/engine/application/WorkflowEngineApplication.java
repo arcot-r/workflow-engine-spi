@@ -1,4 +1,4 @@
-package com.finastra.tx.workflowengineapplication;
+package com.finastra.tx.workflow.engine.application;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
