@@ -9,12 +9,17 @@
 	</parent>
 	<artifactId>workflow-engine-application</artifactId>
 	<name>Workflow :: Engine :: Application</name>
-	
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-configuration-processor</artifactId>
+				<optional>true</optional>
 			</dependency>
 			<dependency>
 				<groupId>com.finastra.tx</groupId>
@@ -33,4 +38,10 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>com.finastra.tx</groupId>
+			<artifactId>workflow-engine-spi</artifactId>
+		</dependency>
+	</dependencies>
 </project>
