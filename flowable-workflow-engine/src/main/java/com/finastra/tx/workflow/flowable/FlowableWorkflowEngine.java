@@ -4,7 +4,7 @@ package com.finastra.tx.workflow.flowable;
 import org.springframework.stereotype.Component;
 
 import com.finastra.tx.workflow.engine.spi.WorkflowEngine;
-@Component
+@Component("flowableWorkflowEngine")
 public class FlowableWorkflowEngine implements WorkflowEngine {
     // Implement methods of the WorkflowEngine interface here
     
@@ -19,6 +19,8 @@ public class FlowableWorkflowEngine implements WorkflowEngine {
         // Implementation specific to Flowable workflow engine
         System.out.println("Executing task with Flowable: " + taskId);
     }
-
-    // Additional methods specific to FlowableWorkflowEngine can be added here
+	@Override
+	public String getMessage() {
+		return "Flowable Called";
+	}
 }

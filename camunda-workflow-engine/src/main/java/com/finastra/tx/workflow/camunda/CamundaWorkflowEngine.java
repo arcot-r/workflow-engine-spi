@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.finastra.tx.workflow.engine.spi.WorkflowEngine;
 
-@Component
+@Component("camundaWorkflowEngine")
 public class CamundaWorkflowEngine implements WorkflowEngine {
     // Implement methods of the WorkflowEngine interface here
     
@@ -20,6 +20,8 @@ public class CamundaWorkflowEngine implements WorkflowEngine {
         // Implementation specific to Camunda workflow engine
         System.out.println("Executing task with Flowable: " + taskId);
     }
-
-    // Additional methods specific to CamundaWorkflowEngine can be added here
+	@Override
+	public String getMessage() {
+		return "Camunda Called";
+	}
 }
