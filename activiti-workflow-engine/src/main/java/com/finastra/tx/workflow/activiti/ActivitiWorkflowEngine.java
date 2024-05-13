@@ -4,7 +4,7 @@ package com.finastra.tx.workflow.activiti;
 import org.springframework.stereotype.Component;
 
 import com.finastra.tx.workflow.engine.spi.WorkflowEngine;
-@Component
+@Component("activitiWorkflowEngine")
 public class ActivitiWorkflowEngine implements WorkflowEngine {
     // Implement methods of the WorkflowEngine interface here
     
@@ -19,6 +19,11 @@ public class ActivitiWorkflowEngine implements WorkflowEngine {
         // Implementation specific to Activiti workflow engine
         System.out.println("Executing task with Flowable: " + taskId);
     }
+
+	@Override
+	public String getMessage() {
+		return "Activiti Called";
+	}
 
     // Additional methods specific to ActivitiWorkflowEngine can be added here
 }
