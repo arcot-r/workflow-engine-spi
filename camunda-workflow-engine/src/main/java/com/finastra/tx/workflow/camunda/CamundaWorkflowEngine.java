@@ -1,11 +1,11 @@
 // CamundaWorkflowEngineImpl.java
 package com.finastra.tx.workflow.camunda;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.finastra.tx.workflow.engine.spi.WorkflowEngine;
 
-@Component("camundaWorkflowEngine")
+@Service("camunda")
 public class CamundaWorkflowEngine implements WorkflowEngine {
     // Implement methods of the WorkflowEngine interface here
     
