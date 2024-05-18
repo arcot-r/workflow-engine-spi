@@ -1,10 +1,10 @@
 // ActivitiWorkflowEngineImpl.java
 package com.finastra.tx.workflow.activiti;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.finastra.tx.workflow.engine.spi.WorkflowEngine;
-@Component("activitiWorkflowEngine")
+@Service("activiti")
 public class ActivitiWorkflowEngine implements WorkflowEngine {
     // Implement methods of the WorkflowEngine interface here
     

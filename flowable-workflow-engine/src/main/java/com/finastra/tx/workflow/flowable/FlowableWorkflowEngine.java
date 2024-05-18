@@ -1,10 +1,10 @@
 // FlowableWorkflowEngineImpl.java
 package com.finastra.tx.workflow.flowable;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.finastra.tx.workflow.engine.spi.WorkflowEngine;
-@Component("flowableWorkflowEngine")
+@Service("flowable")
 public class FlowableWorkflowEngine implements WorkflowEngine {
     // Implement methods of the WorkflowEngine interface here
     
