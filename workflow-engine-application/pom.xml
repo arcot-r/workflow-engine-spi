@@ -15,7 +15,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>com.finastra.tx.workflow.engine.application.WorkflowEngineApplication</mainClass>
+					<mainClass>
+						com.finastra.tx.workflow.engine.application.WorkflowEngineApplication</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
