@@ -1,0 +1,44 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+
+    - name: Cache Maven dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+
+    - name: Build and Package
+      run: mvn clean package --projects workflow-engine-application --also-make
+
+    - name: Build Docker image
+      run: |
+        cd workflow-engine-application
+        docker build -t workflow-engine-application:latest .
+    
+    - name: Push Docker image to local registry
+      run: |
+        docker tag workflow-engine-application:latest localhost:5000/workflow-engine-application:latest
+        docker push localhost:5000/workflow-engine-application:latest
