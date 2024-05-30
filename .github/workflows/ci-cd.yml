@@ -34,10 +34,11 @@ jobs:
       run: mvn clean package --projects workflow-engine-application --also-make
 
     - name: Build Docker image
-      run: |
-        docker build -t workflow-engine-application:latest .
+      run: docker build -t workflow-engine-application:latest .
     
     - name: Push Docker image to local registry
       run: |
         docker tag workflow-engine-application:latest localhost:5000/workflow-engine-application:latest
         docker push localhost:5000/workflow-engine-application:latest
+    - name: Run Docker container
+      run: docker run -d -p 8080:8080 localhost:5000/workflow-engine-application:latest
