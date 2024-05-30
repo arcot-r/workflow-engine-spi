@@ -35,7 +35,6 @@ jobs:
 
     - name: Build Docker image
       run: |
-        cd workflow-engine-application
         docker build -t workflow-engine-application:latest .
     
     - name: Push Docker image to local registry
