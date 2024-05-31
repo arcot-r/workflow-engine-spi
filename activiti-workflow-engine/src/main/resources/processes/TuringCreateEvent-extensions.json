@@ -1,0 +1,31 @@
+{
+    "id": "turingcreateeventmodel",
+    "type": "PROCESS",
+    "name": "odcCreateEvent",
+    "extensions": {
+        "odcCreateEvent": {
+            "mappings": {
+                "createStep": {
+                    "mappingType": "MAP_ALL",
+                    "inputs": {},
+                    "outputs": {}
+                },
+                "inputStep": {
+                    "mappingType": "MAP_ALL",
+                    "inputs": {},
+                    "outputs": {}
+                },
+                "reviewStep": {
+                    "mappingType": "MAP_ALL",
+                    "inputs": {},
+                    "outputs": {}
+                },
+                "releaseStep": {
+                    "mappingType": "MAP_ALL",
+                    "inputs": {},
+                    "outputs": {}
+                }
+            }
+        }
+    }
+}

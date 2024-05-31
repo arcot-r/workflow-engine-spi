@@ -33,11 +33,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
-public class DemoApplicationConfiguration {
-    private Logger logger = LoggerFactory.getLogger(DemoApplicationConfiguration.class);
+public class WorkflowConfiguration {
+    private Logger logger = LoggerFactory.getLogger(WorkflowConfiguration.class);
 
     @Bean
-    public UserDetailsService myUserDetailsService() {
+    UserDetailsService myUserDetailsService() {
 
         InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
 
@@ -60,7 +60,7 @@ public class DemoApplicationConfiguration {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
