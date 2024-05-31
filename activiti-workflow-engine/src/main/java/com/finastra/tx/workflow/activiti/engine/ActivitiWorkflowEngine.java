@@ -8,8 +8,10 @@ import org.activiti.engine.RepositoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import com.finastra.tx.workflow.activiti.config.SecurityUtil;
 import com.finastra.tx.workflow.engine.spi.WorkflowEngine;
 @Service("activiti")
 public class ActivitiWorkflowEngine implements WorkflowEngine {
@@ -18,6 +20,9 @@ public class ActivitiWorkflowEngine implements WorkflowEngine {
 	@Autowired TaskRuntime taskRuntime;
 	@Autowired TaskAdminRuntime taskAdminRuntime;
 	@Autowired RepositoryService repositoryService;
+	@Autowired SecurityUtil securityUtil;
+    @Autowired
+    private UserDetailsService userDetailsService;
     @Override
     public void startWorkflow(String workflowId) {
         // Implementation specific to Activiti workflow engine
@@ -32,6 +37,8 @@ public class ActivitiWorkflowEngine implements WorkflowEngine {
 
 	@Override
 	public String getMessage() {
+		securityUtil.logInAs("reviewer");
+		log.info("Logged in as reviewer" );
 		return "Activiti Called";
 	}
 
