@@ -21,8 +21,7 @@ public class ActivitiWorkflowEngine implements WorkflowEngine {
 	@Autowired TaskAdminRuntime taskAdminRuntime;
 	@Autowired RepositoryService repositoryService;
 	@Autowired SecurityUtil securityUtil;
-    @Autowired
-    private UserDetailsService userDetailsService;
+    
     @Override
     public void startWorkflow(String workflowId) {
         // Implementation specific to Activiti workflow engine
