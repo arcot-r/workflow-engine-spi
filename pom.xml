@@ -22,6 +22,7 @@
 		<module>activiti-workflow-engine</module>
 		<module>flowable-workflow-engine</module>
 		<module>camunda-workflow-engine</module>
+		<module>workflow-callback-handler</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
