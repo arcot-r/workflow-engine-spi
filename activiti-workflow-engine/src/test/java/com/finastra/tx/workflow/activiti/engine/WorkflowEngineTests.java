@@ -17,31 +17,23 @@ package com.finastra.tx.workflow.activiti.engine;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.finastra.tx.workflow.activiti.config.SecurityUtil;
 import org.activiti.api.process.model.ProcessDefinition;
 import org.activiti.api.process.runtime.ProcessRuntime;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 
-import com.finastra.tx.workflow.activiti.config.SecurityUtil;
-import com.finastra.tx.workflow.activiti.config.WorkflowConfiguration;
-
-//@SpringBootTest
-//@ContextConfiguration(classes = {ActivitiWorkflowEngine.class, WorkflowConfiguration.class})
+// @SpringBootTest
+// @ContextConfiguration(classes = {ActivitiWorkflowEngine.class, WorkflowConfiguration.class})
 public class WorkflowEngineTests {
 
-    @Autowired
-    private ProcessRuntime processRuntime;
+  @Autowired private ProcessRuntime processRuntime;
 
-    @Autowired
-    private SecurityUtil securityUtil;
+  @Autowired private SecurityUtil securityUtil;
 
-//    @Test
-    public void contextLoads() {
-        securityUtil.logInAs("system");
-        ProcessDefinition processDefinition = processRuntime.processDefinition("RankMovieId");
-        assertThat(processDefinition).isNotNull();
-    }
-
+  //    @Test
+  public void contextLoads() {
+    securityUtil.logInAs("system");
+    ProcessDefinition processDefinition = processRuntime.processDefinition("RankMovieId");
+    assertThat(processDefinition).isNotNull();
+  }
 }

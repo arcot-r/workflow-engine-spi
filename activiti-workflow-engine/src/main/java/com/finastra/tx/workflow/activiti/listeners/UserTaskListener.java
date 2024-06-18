@@ -8,14 +8,15 @@ import org.springframework.stereotype.Service;
 
 @Service("userTaskListener")
 public class UserTaskListener implements TaskRuntimeEventListener<TaskCreatedEvent> {
-	Logger log = LoggerFactory.getLogger(UserTaskListener.class);
+  Logger log = LoggerFactory.getLogger(UserTaskListener.class);
 
-	@Override
-	public void onEvent(TaskCreatedEvent event) {
-		log.info("Processing the user tasks for the event: {} of type:{}", event.getEntity().getId(),
-				event.getEventType());
-		var task = event.getEntity();
-		log.info("User Task [{}] is completed", task);
-	}
-
+  @Override
+  public void onEvent(TaskCreatedEvent event) {
+    log.info(
+        "Processing the user tasks for the event: {} of type:{}",
+        event.getEntity().getId(),
+        event.getEventType());
+    var task = event.getEntity();
+    log.info("User Task [{}] is completed", task);
+  }
 }
