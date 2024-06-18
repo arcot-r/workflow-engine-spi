@@ -1,45 +1,96 @@
 // ActivitiWorkflowEngineImpl.java
 package com.finastra.tx.workflow.activiti.engine;
 
+import com.finastra.tx.workflow.activiti.config.SecurityUtil;
+import com.finastra.tx.workflow.engine.spi.WorkflowEngine;
+import com.finastra.tx.workflow.engine.spi.models.WorkflowRequest;
+import com.finastra.tx.workflow.engine.spi.models.WorkflowResponse;
+import com.finastra.tx.workflow.engine.spi.models.WorkflowUploadRequest;
+import com.finastra.tx.workflow.engine.spi.models.WorkflowUploadResponse;
+import lombok.extern.slf4j.Slf4j;
+import org.activiti.api.process.model.ProcessInstance;
+import org.activiti.api.process.model.builders.ProcessPayloadBuilder;
 import org.activiti.api.process.runtime.ProcessRuntime;
 import org.activiti.api.task.runtime.TaskAdminRuntime;
 import org.activiti.api.task.runtime.TaskRuntime;
 import org.activiti.engine.RepositoryService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
-import com.finastra.tx.workflow.activiti.config.SecurityUtil;
-import com.finastra.tx.workflow.engine.spi.WorkflowEngine;
 @Service("activiti")
+@Slf4j
 public class ActivitiWorkflowEngine implements WorkflowEngine {
-	Logger log = LoggerFactory.getLogger(ActivitiWorkflowEngine.class);
-	@Autowired ProcessRuntime processRuntime;
-	@Autowired TaskRuntime taskRuntime;
-	@Autowired TaskAdminRuntime taskAdminRuntime;
-	@Autowired RepositoryService repositoryService;
-	@Autowired SecurityUtil securityUtil;
-    
-    @Override
-    public void startWorkflow(String workflowId) {
-        // Implementation specific to Activiti workflow engine
-        System.out.println("Starting workflow with Flowable: " + workflowId);
-    }
+  @Autowired ProcessRuntime processRuntime;
+  @Autowired TaskRuntime taskRuntime;
+  @Autowired TaskAdminRuntime taskAdminRuntime;
+  @Autowired RepositoryService repositoryService;
+  @Autowired SecurityUtil securityUtil;
 
-    @Override
-    public void executeTask(String taskId) {
-        // Implementation specific to Activiti workflow engine
-        System.out.println("Executing task with Flowable: " + taskId);
-    }
+  @Override
+  public String getMessage() {
+    return "<<<<<<<<<<<<Welcome to Activiti Workflow Engine>>>>>>>>>>>";
+  }
 
-	@Override
-	public String getMessage() {
-		securityUtil.logInAs("reviewer");
-		log.info("Logged in as reviewer" );
-		return "Activiti Called";
-	}
+  @Override
+  public WorkflowResponse startProcess(WorkflowRequest request) {
+    var variableMap = request.getProcessVariables();
+    ProcessInstance processInstance =
+        processRuntime.start(
+            ProcessPayloadBuilder.start()
+                .withProcessDefinitionKey(request.getProcessDefinitionKey())
+                .withName(request.getProcessName())
+                .withVariables(variableMap)
+                .build());
+    log.info(">>> Created Process Instance: " + processInstance);
 
-    // Additional methods specific to ActivitiWorkflowEngine can be added here
+    return WorkflowResponse.builder().message("Workflow Started Successfully").build();
+  }
+
+  @Override
+  public WorkflowResponse endProcess(WorkflowRequest request) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public WorkflowResponse completeTask(WorkflowRequest request) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public WorkflowResponse getAllTasks(WorkflowRequest request) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public WorkflowResponse getTasksByUser(WorkflowRequest request) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public WorkflowResponse getProcessInstanceMeta(WorkflowRequest request) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public WorkflowUploadResponse uploadDefinition(WorkflowUploadRequest request) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public WorkflowResponse listAllProcessVariables(WorkflowRequest request) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public WorkflowResponse listAllTaskVariables(WorkflowRequest request) {
+    // TODO Auto-generated method stub
+    return null;
+  }
 }
